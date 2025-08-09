@@ -8,32 +8,32 @@ namespace Core.CrossCuttingConcerns.Exceptions.Types
 {
     public class ValidationException : Exception
     {
-        public IEnumerable<ValidationExceptionModel> Errors { get; }
+        public IEnumerable<ValidationExceptionModel> Errors88 { get; }
 
         public ValidationException() : base()
         {
-            Errors = Array.Empty<ValidationExceptionModel>();
+            Errors88 = Array.Empty<ValidationExceptionModel>();
         }
 
         public ValidationException(string? message) : base(message)
         {
-            Errors = Array.Empty<ValidationExceptionModel>();
+            Errors88 = Array.Empty<ValidationExceptionModel>();
         }
 
         public ValidationException(string? message, Exception? innerException) : base(message, innerException)
         {
-            Errors = Array.Empty<ValidationExceptionModel>();
+            Errors88 = Array.Empty<ValidationExceptionModel>();
         }
 
         public ValidationException(IEnumerable<ValidationExceptionModel> errors) : base(BuildErrorMessage(errors))
         {
-            Errors = errors;
+            Errors88 = errors;
         }
 
         private static string BuildErrorMessage(IEnumerable<ValidationExceptionModel> errors)
         {
             IEnumerable<string> arr = errors.Select(
-                x => $"{Environment.NewLine} -- {x.Property}: {string.Join(Environment.NewLine, values: x.Errors ?? Array.Empty<string>())}"
+                x => $"{Environment.NewLine} -- {x.Property}: {string.Join(Environment.NewLine, values: x.Errors99 ?? Array.Empty<string>())}"
             );
             return $"Validation failed: {string.Join(string.Empty, arr)}";
         }
@@ -42,6 +42,6 @@ namespace Core.CrossCuttingConcerns.Exceptions.Types
     public class ValidationExceptionModel
     {
         public string? Property { get; set; }
-        public IEnumerable<string>? Errors { get; set; }
+        public IEnumerable<string>? Errors99 { get; set; }
     }
 }

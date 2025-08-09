@@ -1,12 +1,9 @@
-﻿using Core.Application.Rules;
+﻿using Core.Application.Pipelines.Validation;
+using Core.Application.Rules;
 using Microsoft.Extensions.DependencyInjection;
 using StockTraceSystem.Application.Services.AuthServices;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+using FluentValidation;
 
 namespace StockTraceSystem.Application
 {
@@ -21,8 +18,10 @@ namespace StockTraceSystem.Application
             services.AddMediatR(configuration =>
             {
                 configuration.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
-
+                configuration.AddOpenBehavior(typeof(RequestValidationBehavior<,>));
             });
+
+            services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
             return services;
         }

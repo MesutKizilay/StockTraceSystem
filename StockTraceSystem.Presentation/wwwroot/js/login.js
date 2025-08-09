@@ -1,5 +1,24 @@
 ﻿$(function () {
 
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+    });
+
+    Toast.fire({
+        icon: 'success',
+        title: 'Signed in successfully',
+        //theme:'dark'
+    })
+
+
     $('#btnSignIn').on('click', function (e) {
         e.preventDefault(); // Form submit'i engelle
 
@@ -30,21 +49,21 @@
                 try {
                     var errorResponse = xhr.responseJSON || JSON.parse(xhr.responseText);
 
-                    if (errorResponse.errors && errorResponse.errors.length > 0)
-                    {
-                        console.warn("Hata:", errorResponse.errors[0]);
+                    console.log("xhr", xhr);
+                    console.log("xhr.responseText", xhr.responseText);
+                    console.log("xhr.responseJSON", xhr.responseJSON);
+
+                    if (errorResponse.Errors && errorResponse.Errors.length > 0) {
+                        console.warn("ifHata:", errorResponse.Errors[0].Errors99);
                     }
-                    else if (errorResponse.detail)
-                    {
-                        console.warn("Hata:", errorResponse.detail);
+                    else if (errorResponse.detail) {
+                        console.warn("elseifHata:", errorResponse.detail);
                     }
-                    else
-                    {
+                    else {
                         console.warn("Bilinmeyen hata:", xhr.responseText);
                     }
                 }
-                catch (e)
-                {
+                catch (e) {
                     console.error("Hata parse edilemedi:", xhr.responseText);
                 }
             }

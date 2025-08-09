@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
+
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,12 +19,21 @@
 	<link href="../src/layout/css/dark/plugins.css" rel="stylesheet" type="text/css" />
 	<!-- END GLOBAL MANDATORY STYLES -->
 	<!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM STYLES -->
-	@* <link href="../src/plugins/src/apex/apexcharts.css" rel="stylesheet" type="text/css"> *@
-	<link href="../src/assets/css/light/dashboard/dash_1.css" rel="stylesheet" type="text/css" />
+@* 	<link href="../src/plugins/src/apex/apexcharts.css" rel="stylesheet" type="text/css">*@
+ 		<link href="../src/assets/css/light/dashboard/dash_1.css" rel="stylesheet" type="text/css" />
 	<link href="../src/assets/css/dark/dashboard/dash_1.css" rel="stylesheet" type="text/css" />
 	<!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
+	<!-- BEGIN THEME GLOBAL STYLES -->
+	@* <link rel="stylesheet" href="../src/plugins/src/sweetalerts2/sweetalerts2.css"> *@
+
+@* 	<link href="../src/plugins/css/light/sweetalerts2/custom-sweetalert.css" rel="stylesheet" type="text/css" />
+ *@
+	<link href="../src/plugins/css/dark/sweetalerts2/custom-sweetalert.css" rel="stylesheet" type="text/css" />
+	<!-- END THEME GLOBAL STYLES -->
 
 </head>
+
+
 <body class="layout-boxed">
 	<!-- BEGIN LOADER -->
 	<div id="load_screen">
@@ -1515,6 +1525,7 @@
 	<script src="../src/plugins/src/mousetrap/mousetrap.min.js"></script>
 	<script src="../src/plugins/src/waves/waves.min.js"></script>
 	<script src="../src/layout/app.js"></script>
+	<script src="../src/plugins/src/highlight/highlight.pack.js"></script>
 	<!-- END GLOBAL MANDATORY SCRIPTS -->
 	<!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
 	@* <script src="../src/plugins/src/apex/apexcharts.min.js"></script> *@
@@ -1522,7 +1533,15 @@
 
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
+	@* <script src="~/src/plugins/src/sweetalerts2/sweetalerts2.min.js"></script> *@
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 	<!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
+	<!-- BEGIN THEME GLOBAL STYLE -->
+	@* <script src="../src/assets/js/scrollspyNav.js"></script> *@
+	@* <script src="../src/plugins/src/sweetalerts2/sweetalerts2.min.js"></script> *@
+	@* <script src="../src/plugins/src/sweetalerts2/custom-sweetalert.js"></script> *@
+	<!-- END THEME GLOBAL STYLE -->
 	@await RenderSectionAsync("Scripts", false);
 </body>
 </html>
