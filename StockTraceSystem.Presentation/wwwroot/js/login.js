@@ -4,7 +4,7 @@
         toast: true,
         position: 'top-end',
         showConfirmButton: false,
-        timer: 3000,
+        timer: 30000,
         timerProgressBar: true,
         didOpen: (toast) => {
             toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -12,27 +12,12 @@
         }
     });
 
-    Toast.fire({
-        icon: 'success',
-        title: 'Signed in successfully',
-        //theme:'dark'
-    })
-
-
     $('#btnSignIn').on('click', function (e) {
-        e.preventDefault(); // Form submit'i engelle
+        e.preventDefault();
 
-        // Email ve şifre değerlerini al
         var email = $('input[type="email"]').val().trim();
-        var password = $('input[type="text"]').val().trim();
+        var password = $('input[type="password"]').val().trim();
 
-        // Boş kontrolü (opsiyonel)
-        //if (!email || !password) {
-        //    console.warn("Lütfen tüm alanları doldurun.");
-        //    return;
-        //}
-
-        // AJAX isteği
         $.ajax({
             url: '/Auth/Login',
             type: 'POST',
@@ -41,32 +26,47 @@
                 password: password
             },
             success: function (response) {
-                // Giriş başarılıysa yönlendir
-                console.log("Giriş başarılı:", response);
-                window.location.href = '/';
-            },
+                Toast.fire({ icon: 'success', title: 'Giriş Başarılı' });
+
+                setTimeout(() => { window.location.href = '/Home/Index'; }, 500);            },
             error: function (xhr) {
-                try {
-                    var errorResponse = xhr.responseJSON || JSON.parse(xhr.responseText);
 
-                    console.log("xhr", xhr);
-                    console.log("xhr.responseText", xhr.responseText);
-                    console.log("xhr.responseJSON", xhr.responseJSON);
+                //var errorResponse = xhr.responseJSON || JSON.parse(xhr.responseText);
 
-                    if (errorResponse.Errors && errorResponse.Errors.length > 0) {
-                        console.warn("ifHata:", errorResponse.Errors[0].Errors99);
-                    }
-                    else if (errorResponse.detail) {
-                        console.warn("elseifHata:", errorResponse.detail);
-                    }
-                    else {
-                        console.warn("Bilinmeyen hata:", xhr.responseText);
-                    }
-                }
-                catch (e) {
-                    console.error("Hata parse edilemedi:", xhr.responseText);
-                }
+                //console.log("xhr", xhr);
+                //console.log("xhr.responseText", xhr.responseText);
+                //console.log("xhr.responseJSON", xhr.responseJSON);
+
+                //if (errorResponse.Errors && errorResponse.Errors.length > 0) {
+                //    var errors = errorResponse.Errors[0].Errors99;
+                //    //
+                //    // HTML olarak alt alta listele
+                //    var html = errors.map(function (err) {
+                //        return '<li>' + err + '</li>';
+                //    }).join('');
+
+                //    Toast.fire({
+                //        icon: 'error',
+                //        title: 'Hata',
+                //        html: html
+                //        //text: errorResponse.Errors[0].Errors99[0]
+                //    });
+                //}
+                //else if (errorResponse.detail) {
+                //    Toast.fire({
+                //        icon: 'error',
+                //        title: 'Hata',
+                //        html: '<li>' + errorResponse.detail + '</li>'
+                //    });
+                //}
+                //else {
+                //    console.warn("Bilinmeyen hata:", xhr.responseText);
+                //}
+
+                parseErrorResponse(xhr);
             }
         });
     });
+
+
 });

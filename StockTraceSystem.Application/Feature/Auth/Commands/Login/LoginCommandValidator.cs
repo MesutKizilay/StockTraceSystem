@@ -6,8 +6,10 @@ namespace StockTraceSystem.Application.Feature.Auth.Commands.Login
     {
         public LoginCommandValidator()
         {
-            RuleFor(c => c.UserForLoginDto.Email).NotEmpty().EmailAddress().WithMessage("aa").MinimumLength(4).WithMessage("bb");
-            RuleFor(c => c.UserForLoginDto.Password).NotEmpty();
+            RuleFor(l => l.UserForLoginDto.Email).NotEmpty().WithMessage("Lütfen email alanını doldurunuz.");
+                                                 //.EmailAddress().WithMessage("Lütfen uygun formatta mail giriniz.")
+
+            RuleFor(l => l.UserForLoginDto.Password).NotEmpty().WithMessage("Lütfen şifre alanını doldurunuz.");
         }
     }
 }

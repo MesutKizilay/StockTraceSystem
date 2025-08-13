@@ -1,0 +1,45 @@
+﻿using Core.Application.Request;
+using Microsoft.AspNetCore.Mvc;
+using StockTraceSystem.Application.Feature.Users.Commands.Create;
+using StockTraceSystem.Application.Feature.Users.Commands.Update;
+using StockTraceSystem.Application.Feature.Users.Queries.GetList;
+
+namespace StockTraceSystem.Presentation.Controllers
+{
+    public class UsersController : BaseController
+    {
+        public IActionResult Users()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> GetList(PageRequest pageRequest)
+        {
+            GetListUserQuery getListUserQuery = new GetListUserQuery() { PageRequest = pageRequest };
+            var users = await Mediator.Send(getListUserQuery);
+            return Json(users);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Update(UpdateUserCommand updateUserCommand)
+        {
+            await Mediator.Send(updateUserCommand);
+            return Json(true);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(CreateUserCommand createUserCommand)
+        {
+            await Mediator.Send(createUserCommand);
+            return Json(true);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(int id)
+        {
+            await Mediator.Send(createUserCommand);
+            return Json(true);
+        }
+    }
+}

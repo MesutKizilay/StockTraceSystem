@@ -40,7 +40,7 @@ namespace StockTraceSystem.Presentation
             var app = builder.Build();
 
             //if (app.Environment.IsProduction())
-            app.ConfigureCustomExceptionMiddleware();
+                app.ConfigureCustomExceptionMiddleware();
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
@@ -59,7 +59,7 @@ namespace StockTraceSystem.Presentation
             app.MapStaticAssets();
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Auth}/{action=Test}/{id?}")
+                pattern: "{controller=Users}/{action=Users}/{id?}")
                 .WithStaticAssets();
 
             app.Run();

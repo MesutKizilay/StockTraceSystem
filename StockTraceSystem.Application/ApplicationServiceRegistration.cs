@@ -21,6 +21,7 @@ namespace StockTraceSystem.Application
                 configuration.AddOpenBehavior(typeof(RequestValidationBehavior<,>));
             });
 
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
             return services;

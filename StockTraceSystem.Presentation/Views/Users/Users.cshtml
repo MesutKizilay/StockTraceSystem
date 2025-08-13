@@ -1,0 +1,125 @@
+﻿@{
+	ViewData["Title"] = "Users";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<head>
+	<link rel="stylesheet" type="text/css" href="../src/plugins/src/table/datatable/datatables.css">
+
+	<link rel="stylesheet" type="text/css" href="../src/plugins/css/light/table/datatable/dt-global_style.css">
+	<link rel="stylesheet" type="text/css" href="../src/plugins/css/light/table/datatable/custom_dt_custom.css">
+
+	<link rel="stylesheet" type="text/css" href="../src/plugins/css/dark/table/datatable/dt-global_style.css">
+	<link rel="stylesheet" type="text/css" href="../src/plugins/css/dark/table/datatable/custom_dt_custom.css">
+
+</head>
+
+<table id="usersTable" class="table table-striped dt-table-hover table-bordered" style="width:100%"></table>
+
+<!-- Edit User Modal -->
+<div class="modal fade" id="editUserModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <form id="editUserForm" class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Kullanıcıyı Düzenle</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat"></button>
+            </div>
+
+            <div class="modal-body">
+                <input type="hidden" name="id" id="edit-id" />
+
+                <div class="mb-3">
+                    <label for="edit-firstName" class="form-label">Ad</label>
+                    <input type="text" class="form-control" id="edit-firstName" name="firstName">
+                </div>
+
+                <div class="mb-3">
+                    <label for="edit-lastName" class="form-label">Soyad</label>
+                    <input type="text" class="form-control" id="edit-lastName" name="lastName">
+                </div>
+
+                <div class="mb-3">
+                    <label for="edit-email" class="form-label">E‑posta</label>
+                    <input type="text" class="form-control" id="edit-email" name="email">
+                </div>
+
+                <div class="mb-3">
+                    <label for="edit-status" class="form-label">Durum</label>
+                    <select id="edit-status" name="status" class="form-select">
+                        <option value="true">Aktif</option>
+                        <option value="false">Pasif</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="edit-password" class="form-label">Şifre</label>
+                    <input type="text" class="form-control" id="edit-password" name="password" placeholder="Şifre">
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Vazgeç</button>
+                <button type="submit" class="btn btn-primary" id="edit-saveBtn">
+                    <span class="spinner-border spinner-border-sm me-2 d-none" id="edit-spinner"></span>
+                    Kaydet
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Add User Modal -->
+<div class="modal fade" id="addUserModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <form id="addUserForm" class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Yeni Kullanıcı</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat"></button>
+            </div>
+
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label for="add-firstName" class="form-label">Ad</label>
+                    <input type="text" class="form-control" id="add-firstName" name="firstName">
+                </div>
+
+                <div class="mb-3">
+                    <label for="add-lastName" class="form-label">Soyad</label>
+                    <input type="text" class="form-control" id="add-lastName" name="lastName">
+                </div>
+
+                <div class="mb-3">
+                    <label for="add-email" class="form-label">E‑posta</label>
+                    <input type="text" class="form-control" id="add-email" name="email">
+                </div>
+
+                <div class="mb-3">
+                    <label for="add-status" class="form-label">Durum</label>
+                    <select id="add-status" name="status" class="form-select">
+                        <option value="true">Aktif</option>
+                        <option value="false">Pasif</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="add-password" class="form-label">Şifre</label>
+                    <input type="password" class="form-control" id="add-password" name="password">
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Vazgeç</button>
+                <button type="submit" class="btn btn-primary" id="add-saveBtn">
+                    <span class="spinner-border spinner-border-sm me-2 d-none" id="add-spinner"></span>
+                    Kaydet
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+	<script src="../src/plugins/src/table/datatable/datatables.js"></script>
+	<script src="../src/assets/js/custom.js"></script>
+	<script src="~/js/users.js"></script>
+}

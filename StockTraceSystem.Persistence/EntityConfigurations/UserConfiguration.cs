@@ -9,7 +9,7 @@ namespace StockTraceSystem.Persistence.EntityConfiguration
 
         public void Configure(EntityTypeBuilder<User> builder)
         {
-            builder.HasQueryFilter(u => u.Status == true);
+            //builder.HasQueryFilter(u => u.Status == true);
             builder.HasData(_seeds);
         }
 

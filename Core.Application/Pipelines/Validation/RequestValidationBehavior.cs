@@ -6,7 +6,7 @@ using ValidationException = Core.CrossCuttingConcerns.Exceptions.Types.Validatio
 namespace Core.Application.Pipelines.Validation
 {
     public class RequestValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
-        where TRequest : IRequest<TResponse>
+        where TRequest : IBaseRequest
     {
         private readonly IEnumerable<IValidator<TRequest>> _validators;
 
@@ -25,10 +25,10 @@ namespace Core.Application.Pipelines.Validation
                                                                       .GroupBy(
                                                                           keySelector: p => p.PropertyName,
                                                                           resultSelector: (propertyName, errors) =>
-                                                                              new ValidationExceptionModel 
-                                                                              { 
-                                                                                  Property = propertyName, 
-                                                                                  Errors99 = errors.Select(e => e.ErrorMessage) 
+                                                                              new ValidationExceptionModel
+                                                                              {
+                                                                                  Property = propertyName,
+                                                                                  Errors99 = errors.Select(e => e.ErrorMessage)
                                                                               }
                                                                       ).ToList();
 
