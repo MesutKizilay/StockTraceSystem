@@ -28,7 +28,8 @@
             success: function (response) {
                 Toast.fire({ icon: 'success', title: 'Giriş Başarılı' });
 
-                setTimeout(() => { window.location.href = '/Home/Index'; }, 500);            },
+                setTimeout(() => { window.location.href = '/Users/Users'; }, 100);
+            },
             error: function (xhr) {
 
                 //var errorResponse = xhr.responseJSON || JSON.parse(xhr.responseText);

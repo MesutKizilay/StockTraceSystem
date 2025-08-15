@@ -6,6 +6,8 @@ using Core.Security.Encryption;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Core.Security;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
 
 namespace StockTraceSystem.Presentation
 {
@@ -21,6 +23,12 @@ namespace StockTraceSystem.Presentation
             builder.Services.AddApplicationServices();
             builder.Services.AddSecurityervices();
 
+            builder.Services.AddMvc(config =>
+            {
+                var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
+                config.Filters.Add(new AuthorizeFilter(policy));
+            });
+
             TokenOptions? tokenOptions = builder.Configuration.GetSection("TokenOptions").Get<TokenOptions>();
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                             .AddJwtBearer(options =>
@@ -33,11 +41,51 @@ namespace StockTraceSystem.Presentation
                                     ValidIssuer = tokenOptions.Issuer,
                                     ValidAudience = tokenOptions.Audience,
                                     ValidateIssuerSigningKey = true,
-                                    IssuerSigningKey = SecurityKeyHelper.CreateSecurityKey(tokenOptions.SecurityKey)
+                                    IssuerSigningKey = SecurityKeyHelper.CreateSecurityKey(tokenOptions.SecurityKey),
+                                    ClockSkew = TimeSpan.Zero
+                                };
+
+                                options.Events = new JwtBearerEvents
+                                {
+                                    OnMessageReceived = ctx =>
+                                    {
+                                        if (ctx.Request.Cookies.TryGetValue("AccessToken", out var token))
+                                            ctx.Token = token;
+                                        //else
+                                        //    ctx.Response.Redirect($"/Auth/Login");
+
+                                        return Task.CompletedTask;
+                                    }
+                                    //OnAuthenticationFailed = a =>
+                                    //{
+                                    //    a.Response.Redirect($"/Auth/Login");
+                                    //    return Task.CompletedTask;
+                                    //}
                                 };
                             });
 
+
+            builder.Services.AddAuthorization();
+
             var app = builder.Build();
+
+            app.UseStatusCodePages(context =>
+            {
+                var res = context.HttpContext.Response;
+                var req = context.HttpContext.Request;
+
+                if (res.StatusCode == 401)
+                {
+                    var returnUrl = Uri.EscapeDataString(req.Path + req.QueryString);
+                    res.Redirect($"/Auth/Login?returnUrl={returnUrl}");
+                }
+                //else if (res.StatusCode == 403)
+                //{
+                //    var returnUrl = Uri.EscapeDataString(req.Path + req.QueryString);
+                //    res.Redirect($"/Auth/AccessDenied?returnUrl={returnUrl}");
+                //}
+                return Task.CompletedTask;
+            });
 
             //if (app.Environment.IsProduction())
                 app.ConfigureCustomExceptionMiddleware();
@@ -59,7 +107,8 @@ namespace StockTraceSystem.Presentation
             app.MapStaticAssets();
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Users}/{action=Users}/{id?}")
+                pattern: "{controller=Warehouse}/{action=Stocktaking}/{id?}")
+                //pattern: "{controller=Auth}/{action=Login}/{id?}")
                 .WithStaticAssets();
 
             app.Run();

@@ -1,0 +1,89 @@
+﻿@{
+	ViewData["Title"] = "Stocktaking";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+	/* .flash-success {
+			background-color: #0f5132 !important;
+			color: #fff !important;
+			transition: background-color .4s ease;
+		} */
+
+	/* .flash-success {
+			background-color: #0f5132 !important;
+			color: #fff !important;
+			transition: background-color .4s ease;
+		} */
+
+	/* body.dark .table-striped.table-hover tbody tr.flash-success > td,
+		.table-striped.table-hover tbody tr.flash-success > td {
+			background-color: #0F5132 !important;
+			color: #fff !important;
+		}
+
+		body.dark .table-striped.table-hover tbody tr.flash-success:hover > td,
+		.table-striped.table-hover tbody tr.flash-success:hover > td {
+			background-color: #0F5132 !important;
+		} */
+
+
+	/* ZEBRA: koyu temada çok hafif şeritler */
+	body.dark .table-zebra tbody > tr:nth-child(odd):not(.flash-success) > td {
+		background-color: rgba(255, 255, 255, 0.03);
+	}
+
+	body.dark .table-zebra tbody > tr:nth-child(even):not(.flash-success) > td {
+		background-color: rgba(255, 255, 255, 0.015);
+	}
+
+	/* ZEBRA: açık tema */
+	body:not(.dark) .table-zebra tbody > tr:nth-child(odd):not(.flash-success) > td {
+		background-color: #f8f9fb; /* çok açık gri */
+	}
+
+	body:not(.dark) .table-zebra tbody > tr:nth-child(even):not(.flash-success) > td {
+		background-color: #ffffff;
+	}
+
+	/* Hover (flash-success hariç) */
+	.table-zebra tbody > tr:hover:not(.flash-success) > td {
+		background-color: rgba(127, 127, 127, 0.12);
+	}
+
+	/* Önceden verdiğimiz okunan satır rengi – zebra’yı ezer */
+	.table-zebra tbody tr.flash-success > td {
+		background-color: #0F5132 !important;
+		color: #fff !important;
+		/* transition: background-color .4s ease; */
+	}
+
+	.table-zebra tbody tr.flash-success:hover > td {
+		background-color: #0F5132 !important;
+	}
+
+	.table-zebra tbody > tr > td {
+		transition: background-color .9s ease;
+	}
+</style>
+
+<div class="card p-3 mb-3">
+	<label for="scanInput" class="form-label mb-1">Barkod / Ürün Kodu</label>
+	<input id="scanInput" type="text" class="form-control form-control-lg" placeholder="Barkodu okutun ya da ürün kodu yazıp Enter'a basın" autofocus>
+</div>
+
+<table id="invTable" class="table dt-table-hover table-bordered table-zebra" style="width:100%">
+	<thead>
+		<tr>
+			<th>Ürün Kodu</th>
+			<th>Ürün Adı</th>
+			<th>Mevcut Stok</th>
+			<th>Sayım</th>
+		</tr>
+	</thead>
+	<tbody></tbody>
+</table>
+
+@section Scripts {
+	<script src="~/js/stocktaking.js"></script>
+}

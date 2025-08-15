@@ -3,8 +3,14 @@
 	Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@* @if (User?.Identity?.IsAuthenticated == true)
+{
+    var fullName =
+        User.FindFirst(ClaimTypes.Name)?.Value;
+
+    <span>@fullName</span>
+} *@
 
 @section Scripts {
-
 
 }

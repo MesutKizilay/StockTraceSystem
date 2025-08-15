@@ -2,7 +2,7 @@
     toast: true,
     position: 'top-end',
     showConfirmButton: false,
-    timer: 30000,
+    timer: 20000,
     timerProgressBar: true,
     didOpen: (toast) => {
         toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -29,7 +29,9 @@ function parseErrorResponse(xhr) {
         else if (typeof errObj === "string") {
             msgs.push(errObj);
         }
-    } catch (e) {
+    }
+    catch (e) {
+        console.log(e);
         msgs.push("Bilinmeyen bir hata oluştu.");
     }
 

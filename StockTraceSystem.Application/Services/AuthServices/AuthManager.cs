@@ -1,5 +1,6 @@
 ﻿using Core.Security.Entities;
 using Core.Security.JWT;
+using Microsoft.EntityFrameworkCore;
 using StockTraceSystem.Application.Services.Repositories;
 
 namespace StockTraceSystem.Application.Services.AuthServices
@@ -24,7 +25,7 @@ namespace StockTraceSystem.Application.Services.AuthServices
             //    .Select(p => new OperationClaim { Id = p.OperationClaimId, Name = p.OperationClaim.Name })
             //    .ToListAsync();
 
-            IList<OperationClaim> operationClaims = (await _userOperationClaimRepository.GetList(filter: c => c.UserId == user.Id/*, include: c => c.Include(c => c.OperationClaim)*/))
+            IList<OperationClaim> operationClaims = (await _userOperationClaimRepository.GetList(filter: c => c.UserId == user.Id, include: c => c.Include(c => c.OperationClaim)))
                                                                                         .Select(c => new OperationClaim
                                                                                         {
                                                                                             Id = c.OperationClaimId,

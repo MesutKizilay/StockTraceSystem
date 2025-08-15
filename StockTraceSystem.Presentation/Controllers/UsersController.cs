@@ -1,6 +1,8 @@
 ﻿using Core.Application.Request;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using StockTraceSystem.Application.Feature.Users.Commands.Create;
+using StockTraceSystem.Application.Feature.Users.Commands.Delete;
 using StockTraceSystem.Application.Feature.Users.Commands.Update;
 using StockTraceSystem.Application.Feature.Users.Queries.GetList;
 
@@ -38,7 +40,9 @@ namespace StockTraceSystem.Presentation.Controllers
         [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {
-            await Mediator.Send(createUserCommand);
+            DeleteUserCommand deleteUserCommand = new DeleteUserCommand() { Id = id };
+            
+            await Mediator.Send(deleteUserCommand);
             return Json(true);
         }
     }
