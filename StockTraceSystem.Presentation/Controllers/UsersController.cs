@@ -5,6 +5,7 @@ using StockTraceSystem.Application.Feature.Users.Commands.Create;
 using StockTraceSystem.Application.Feature.Users.Commands.Delete;
 using StockTraceSystem.Application.Feature.Users.Commands.Update;
 using StockTraceSystem.Application.Feature.Users.Queries.GetList;
+using System.Security.Claims;
 
 namespace StockTraceSystem.Presentation.Controllers
 {
@@ -12,6 +13,7 @@ namespace StockTraceSystem.Presentation.Controllers
     {
         public IActionResult Users()
         {
+            ViewBag.Claim = User.FindFirst(ClaimTypes.Role)?.Value;
             return View();
         }
 
@@ -41,7 +43,7 @@ namespace StockTraceSystem.Presentation.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             DeleteUserCommand deleteUserCommand = new DeleteUserCommand() { Id = id };
-            
+
             await Mediator.Send(deleteUserCommand);
             return Json(true);
         }

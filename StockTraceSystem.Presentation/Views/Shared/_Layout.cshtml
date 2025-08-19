@@ -264,13 +264,13 @@
 				<div class="navbar-nav theme-brand flex-row  text-center">
 					<div class="nav-logo">
 						<div class="nav-item theme-logo">
-							<a href="/Home/Index">
+							<a href="/Warehouse/Stocktaking">
 								@* <img src="../src/assets/img/logo.svg" class="navbar-logo" alt="logo"> *@
 								<img src="~/img/teknosin2.png" alt="logo" style="width:24px;height:40px">
 							</a>
 						</div>
 						<div class="nav-item theme-text">
-							<a href="/Home/Index" class="nav-link"> TEKNOSİN </a>
+							<a href="/Warehouse/Stocktaking" class="nav-link"> TEKNOSİN </a>
 						</div>
 					</div>
 					<div class="nav-item sidebar-toggle">
@@ -291,49 +291,48 @@
 						</div>
 					</div>
 				</div>
-				
-
 
 				<div class="shadow-bottom"></div>
 				<ul class="list-unstyled menu-categories" id="accordionExample">
 
 					@* <li class="menu active">
-						<a href="/Home/Index" aria-expanded="false" class="dropdown-toggle">
-							<div class="">
-								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-								<span>AnaSayfa</span>
-							</div>
-						</a>
-					</li> *@
+				<a href="/Home/Index" aria-expanded="false" class="dropdown-toggle">
+					<div class="">
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+						<span>AnaSayfa</span>
+					</div>
+				</a>
+</li> *@
 
-					<li class="menu menu-heading">
-						<div class="heading"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus"><line x1="5" y1="12" x2="19" y2="12"></line></svg><span>Depo İşlemleri</span></div>
-					</li>
+					@* <li class="menu menu-heading">
+				<div class="heading"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus"><line x1="5" y1="12" x2="19" y2="12"></line></svg><span>Depo İşlemleri</span></div>
+</li>
 
-					<li class="menu">
-						<a href="/Warehouse/Stocktaking" aria-expanded="false" class="dropdown-toggle">
-							<div class="">
-								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-box"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
-								<span>Stok Sayım</span>
-							</div>
-						</a>
-					</li>
+<li class="menu">
+				<a href="/Warehouse/Stocktaking" aria-expanded="false" class="dropdown-toggle">
+					<div class="">
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-box"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+						<span>Stok Sayım</span>
+					</div>
+				</a>
+</li>
 
-					<li class="menu menu-heading">
-						<div class="heading"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus"><line x1="5" y1="12" x2="19" y2="12"></line></svg><span>Kullanıcı İşlemleri</span></div>
-					</li>
+@if (User.Claims.Any(c => c.Value == "Supervisor" || c.Value == "Admin"))
+{
+				<li class="menu menu-heading">
+					<div class="heading"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus"><line x1="5" y1="12" x2="19" y2="12"></line></svg><span>Kullanıcı İşlemleri</span></div>
+				</li>
 
-					<li class="menu active">
-						<a href="/Users/Users" aria-expanded="false" class="dropdown-toggle">
-							<div class="">
-								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-								<span>Kullanıcılar</span>
-							</div>
-						</a>
-					</li>
+				<li class="menu active">
+					<a href="/Users/Users" aria-expanded="false" class="dropdown-toggle">
+						<div class="">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+							<span>Kullanıcılar</span>
+						</div>
+					</a>
+				</li>} *@
 
-
-					@* <li class="menu active d-none">
+					@* <li class="menu active">
 						<a href="#dashboard" data-bs-toggle="collapse" aria-expanded="true" class="dropdown-toggle">
 							<div class="">
 								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
@@ -348,51 +347,47 @@
 								<a href="/Home/Index"> Analytics </a>
 							</li>
 							<li>
-								<a href="./index2.html"> Sales </a>
+								<a href="/Home/Privacy"> Sales </a>
 							</li>
 						</ul>
 					</li> *@
 
-					@* <li class="menu menu-heading">
-						<div class="heading"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus"><line x1="5" y1="12" x2="19" y2="12"></line></svg><span>----------</span></div>
-					</li> *@
-
-					@* <li class="menu">
-						<a href="#users" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+					<li class="menu active">
+						<a href="#components" data-bs-toggle="collapse" aria-expanded="true" class="dropdown-toggle">
 							<div class="">
-								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-								<span>Kullanıcı İşlemleri</span>
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-box"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+								<span>Depo İşlemleri</span>
 							</div>
 							<div>
 								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
 							</div>
 						</a>
-						<ul class="collapse submenu list-unstyled" id="users" data-bs-parent="#accordionExample">
-							<li>
-								<a href="/Users/Users"> Kullanıcılar </a>
+						<ul class="collapse submenu list-unstyled show" id="components" data-bs-parent="#accordionExample">
+							<li class="active">
+								<a href="/Warehouses/Stocktaking"> Stok Sayım </a>
 							</li>
 						</ul>
 					</li>
 
-					<li class="menu">
-						<a href="#components" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-							<div class="">
-								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-box"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
-								<span>Components</span>
-							</div>
-							<div>
-								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
-							</div>
-						</a>
-						<ul class="collapse submenu list-unstyled" id="components" data-bs-parent="#accordionExample">
-							<li>
-								<a href="/Home/Privacy"> Tabs </a>
-							</li>							
-						</ul>
-					</li> *@
-
-
-
+					@if (User.Claims.Any(c => c.Value == "Supervisor" || c.Value == "Admin"))
+					{
+						<li class="menu">
+							<a href="#users" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+								<div class="">
+									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+									<span>Kullanıcı İşlemleri</span>
+								</div>
+								<div>
+									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
+								</div>
+							</a>
+							<ul class="collapse submenu list-unstyled" id="users" data-bs-parent="#accordionExample">
+								<li>
+									<a href="/Users/Users"> Kullanıcılar </a>
+								</li>
+							</ul>
+						</li>
+					}
 
 				</ul>
 			</nav>
@@ -441,20 +436,6 @@
 
 	<script src="../src/plugins/src/table/datatable/datatables.js"></script>
 
-	@* <script>
-		const Toast = Swal.mixin({
-			toast: true,
-			position: 'top-end',
-			showConfirmButton: false,
-			timer: 30000,
-			timerProgressBar: true,
-			didOpen: (toast) => {
-				toast.addEventListener('mouseenter', Swal.stopTimer)
-				toast.addEventListener('mouseleave', Swal.resumeTimer)
-			}
-		});
-	</script> *@
-
 	<script src="~/js/common.js"></script>
 
 	@* <script>
@@ -468,7 +449,7 @@
 	</script> *@
 
 
-	<script>
+	@* 	<script>
 		$(function () {
 		  const $menu = $('#accordionExample');
 
@@ -490,8 +471,82 @@
 			}
 		  });
 		});
-	</script>
+	</script> *@
 
+
+
+
+
+	<script>
+		$(function () {
+
+		  function clearActive() {
+			$(".menu").removeClass("active");
+			$(".submenu").removeClass("show");
+			$(".submenu li").removeClass("active");
+			$(".menu > a").attr("aria-expanded", "false");
+		  }
+
+		  function activateByHref(href) {
+			 clearActive();
+			const $link = $('a[href="' + href + '"]');
+			if (!$link.length) return;
+
+			if ($link.closest(".submenu").length) {
+			  // Alt menü linki
+			  $link.parent("li").addClass("active");
+			  const $submenu = $link.closest(".submenu").addClass("show");
+			  const $menu = $submenu.closest(".menu").addClass("active");
+			  $menu.children("a.dropdown-toggle").attr("aria-expanded", "true");
+			} else {
+			  // Üst menü linki (varsa gerçek href)
+			  const $menu = $link.closest(".menu").addClass("active");
+			  $menu.find(".submenu").addClass("show");
+			  $link.attr("aria-expanded", "true");
+			}
+		  }
+
+		  // Tıklamalar: state’i sakla
+		  $(".menu > a").on("click", function () {
+			const target = $(this).attr("href"); // ör: #dashboard
+			localStorage.setItem("activeMenuTarget", target);
+			localStorage.removeItem("activeSubHref");
+		  });
+
+		  $(".submenu a").on("click", function () {
+			localStorage.setItem("activeSubHref", $(this).attr("href")); // ör: /Home/Index
+		  });
+
+		  // Sayfa yüklenince: önce alt link (tam eşleşme), yoksa menü hedefi
+		  let activeSub = localStorage.getItem("activeSubHref");
+
+		  // Mevcut sayfa ile otomatik eşle: /Home/Index gibi
+		  const currentPath = window.location.pathname + window.location.search;
+		  if (!activeSub) {
+			const $match = $('.submenu a[href="' + currentPath + '"]');
+			if ($match.length) activeSub = currentPath;
+		  }
+
+		  if (activeSub) {
+			activateByHref(activeSub);
+		  } else {
+			// Alt link yoksa, son açılan menü panelini uygula
+			let menuTarget = localStorage.getItem("activeMenuTarget");
+			if (!menuTarget) {
+			  // Varsayılan (istersen değiştir)
+			  menuTarget = "#dashboard";
+			}
+
+			clearActive();
+			const $menu = $('.menu > a[href="' + menuTarget + '"]').closest('.menu');
+			if ($menu.length) {
+			  $menu.addClass("active");
+			  $menu.find(".submenu").addClass("show");
+			  $menu.children("a.dropdown-toggle").attr("aria-expanded", "true");
+			}
+		  }
+		});
+	</script>
 
 	<!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
 	<!-- BEGIN THEME GLOBAL STYLE -->

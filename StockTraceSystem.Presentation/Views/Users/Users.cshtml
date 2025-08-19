@@ -2,16 +2,11 @@
 	ViewData["Title"] = "Users";
 	Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@* <head>
-	<link rel="stylesheet" type="text/css" href="../src/plugins/src/table/datatable/datatables.css">
 
-	<link rel="stylesheet" type="text/css" href="../src/plugins/css/light/table/datatable/dt-global_style.css">
-	<link rel="stylesheet" type="text/css" href="../src/plugins/css/light/table/datatable/custom_dt_custom.css">
-
-	<link rel="stylesheet" type="text/css" href="../src/plugins/css/dark/table/datatable/dt-global_style.css">
-	<link rel="stylesheet" type="text/css" href="../src/plugins/css/dark/table/datatable/custom_dt_custom.css">
-
-</head> *@
+<head>
+    <link href="../src/assets/css/light/components/modal.css" rel="stylesheet" type="text/css" />
+    <link href="../src/assets/css/dark/components/modal.css" rel="stylesheet" type="text/css" />
+</head>
 
 <table id="usersTable" class="table table-striped dt-table-hover table-bordered" style="width:100%"></table>
 
@@ -122,4 +117,7 @@
 	@* <script src="../src/plugins/src/table/datatable/datatables.js"></script> *@
 	@* <script src="../src/assets/js/custom.js"></script> *@
 	<script src="~/js/users.js"></script>
+    <script>
+        window.claim = "@ViewBag.Claim";
+    </script>
 }

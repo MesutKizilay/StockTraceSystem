@@ -10,5 +10,6 @@ namespace StockTraceSystem.Application.Feature.Auth.Constants
     {
         public const string UserDoesntExist = "Kullanıcı sisteme kayıtlı değil.";
         public const string PasswordDoesntMatch = "Kullanıcı şifresi hatalı.";
+        public const string UserIsNotActive = "Kullanıcınız pasif durumdadır.";
     }
 }

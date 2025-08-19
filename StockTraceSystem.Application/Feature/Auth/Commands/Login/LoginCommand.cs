@@ -36,6 +36,7 @@ namespace StockTraceSystem.Application.Feature.Auth.Commands.Login
 
                 await _authBusinessRules.UserShouldBeExists(user);
                 await _authBusinessRules.UserPasswordShouldBeMatch(user, request.UserForLoginDto.Password);
+                await _authBusinessRules.UserShouldBeActive(user);
 
                 AccessToken createdAccessToken = await _authService.CreateAccessToken(user);
 

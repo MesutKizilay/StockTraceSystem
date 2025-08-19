@@ -1,8 +1,10 @@
 ﻿$(function () {
+    var claim = window.claim;
+    console.log("claim", claim);
 
     const dt = $('#usersTable').DataTable({
 
-        dom: "<'dt--top-section'<'row'<'col-12 col-sm-6 d-flex justify-content-sm-start justify-content-center'l><'col-12 col-sm-6 d-flex justify-content-sm-end justify-content-center mt-sm-0 mt-3'f>>>" +
+        dom: "<'dt--top-section'<'row'<'col-6 col-sm-6 d-flex justify-content-sm-start justify-content-start'l><'col-6 col-sm-6 d-flex justify-content-sm-end justify-content-end mt-sm-0 mt-0'f>>>" +
             "<'table-responsive'tr>" +
             "<'dt--bottom-section d-sm-flex justify-content-sm-between text-center'<'dt--pages-count  mb-sm-0 mb-3'i><'dt--pagination'p>>",
         oLanguage: {
@@ -76,7 +78,7 @@
                 render: function (data, type, row) {
                     return `
             <div class="dt-actions">
-              <a href="#" class="btn-action edit" data-id="${row.id}" title="Düzenle">                
+              <a href="#" class="btn-action edit" data-id="${row.id}" title="Düzenle">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -101,17 +103,24 @@
         ],
 
         initComplete: function () {
-            // Filtre inputunun olduğu sağ üst bölüme buton ekle
-            var $right = $('.dt--top-section .row .col-12.col-sm-6.d-flex.justify-content-sm-end');
-            if ($right.length) {
-                var btnHtml = `
-          <button type="button" id="btnAddUser" class="btn btn-primary ms-2">
-            + Yeni Kullanıcı
-          </button>`;
-                $right.append(btnHtml);
-            } else {
-                // Olur da custom DOM değişirse, tablo üstüne fallback olarak ekle
-                $('#usersTable').before('<div class="d-flex justify-content-end mb-2"><button type="button" id="btnAddUser" class="btn btn-primary">+ Yeni Kullanıcı</button></div>');
+            if (claim !== "Supervisor") {
+                dt.column(4).visible(false); // Password sütunu
+                dt.column(6).visible(false); // İşlem sütunu
+            }
+            else {
+                // Filtre inputunun olduğu sağ üst bölüme buton ekle
+                var $right = $('.dt--top-section .row .col-6.col-sm-6.d-flex.justify-content-sm-end');
+                if ($right.length) {
+                    var btnHtml = `
+                        <button type="button" id="btnAddUser" class="btn btn-primary ms-2">
+                          + Yeni Kullanıcı
+                        </button>`;
+                    $right.append(btnHtml);
+                }
+                else {
+                    // Olur da custom DOM değişirse, tablo üstüne fallback olarak ekle
+                    $('#usersTable').before('<div class="d-flex justify-content-end mb-2"><button type="button" id="btnAddUser" class="btn btn-primary">+ Yeni Kullanıcı</button></div>');
+                }
             }
         }
     });
@@ -156,7 +165,7 @@
         $.ajax({
             url: '/Users/Update',
             type: 'POST',
-            data: { updateUserCommand },
+            data: updateUserCommand,
             success: function (res) {
                 Toast.fire({ icon: 'success', title: 'Kullanıcı başarıyla güncellendi.' });
 

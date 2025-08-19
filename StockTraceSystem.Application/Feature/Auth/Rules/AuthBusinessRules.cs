@@ -36,5 +36,13 @@ namespace StockTraceSystem.Application.Feature.Auth.Rules
                 await ThrowBusinessException(AuthMessages.PasswordDoesntMatch);
             }
         }
+
+        public async Task UserShouldBeActive(User user)
+        {
+            if (!user.Status)
+            {
+                await ThrowBusinessException(AuthMessages.UserIsNotActive);
+            }
+        }
     }
 }

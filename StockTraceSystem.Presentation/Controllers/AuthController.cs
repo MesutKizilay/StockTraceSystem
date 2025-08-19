@@ -24,7 +24,7 @@ namespace StockTraceSystem.Presentation.Controllers
             LoginCommand loginCommand = new() { UserForLoginDto = userForLoginDto };
             LoggedResponse result = await Mediator.Send(loginCommand);
 
-            Response.Cookies.Append("AccessToken", result.AccessToken!.Token, new CookieOptions
+            Response.Cookies.Append("AccessToken", result.AccessToken!.Token, new CookieOptions 
             {
                 HttpOnly = true,
                 Secure = false,

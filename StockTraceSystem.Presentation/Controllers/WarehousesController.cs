@@ -2,7 +2,7 @@
 
 namespace StockTraceSystem.Presentation.Controllers
 {
-    public class WarehouseController : BaseController
+    public class WarehousesController : BaseController
     {
         public IActionResult Stocktaking()
         {

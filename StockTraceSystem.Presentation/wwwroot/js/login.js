@@ -28,7 +28,7 @@
             success: function (response) {
                 Toast.fire({ icon: 'success', title: 'Giriş Başarılı' });
 
-                setTimeout(() => { window.location.href = '/Users/Users'; }, 100);
+                setTimeout(() => { window.location.href = '/Warehouses/Stocktaking'; }, 100);
             },
             error: function (xhr) {
 
