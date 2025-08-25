@@ -8,12 +8,7 @@ namespace StockTraceSystem.Presentation.Controllers
     [AllowAnonymous]
     public class AuthController : BaseController
     {
-        public IActionResult Login()
-        {
-            return View();
-        }
-
-        public IActionResult Test()
+        public IActionResult Login(string? returnUrl)
         {
             return View();
         }
@@ -24,12 +19,12 @@ namespace StockTraceSystem.Presentation.Controllers
             LoginCommand loginCommand = new() { UserForLoginDto = userForLoginDto };
             LoggedResponse result = await Mediator.Send(loginCommand);
 
-            Response.Cookies.Append("AccessToken", result.AccessToken!.Token, new CookieOptions 
+            Response.Cookies.Append("AccessToken", result.AccessToken!.Token, new CookieOptions
             {
                 HttpOnly = true,
                 Secure = false,
                 SameSite = SameSiteMode.Strict, // veya Strict
-                //Expires = DateTimeOffset.UtcNow.AddMinutes(10000000),
+                //Expires = DateTimeOffset.UtcNow.AddSeconds(5),
                 Expires = result.AccessToken.Expiration,
                 IsEssential = true,
             });

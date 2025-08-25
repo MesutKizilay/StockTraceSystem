@@ -2,6 +2,7 @@
 using Core.Application.Request;
 using Core.Persistence.Paging;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using StockTraceSystem.Application.Services.Repositories;
 
 namespace StockTraceSystem.Application.Feature.Users.Queries.GetList
@@ -25,7 +26,8 @@ namespace StockTraceSystem.Application.Feature.Users.Queries.GetList
             {
                 var users = await _userRepository.GetListWithPaginate(index: request.PageRequest.Index,
                                                                       size: request.PageRequest.Size,
-                                                                      cancellationToken: cancellationToken);
+                                                                      cancellationToken: cancellationToken,
+                                                                      include: u => u.Include(u => u.UserOperationClaims).ThenInclude(uoc => uoc.OperationClaim));
 
                 var userDtos = _mapper.Map<Paginate<GetListUserDto>>(users);
 

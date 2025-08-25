@@ -26,9 +26,11 @@
                 password: password
             },
             success: function (response) {
+                console.log("AuthResponse11", response);
+
                 Toast.fire({ icon: 'success', title: 'Giriş Başarılı' });
 
-                setTimeout(() => { window.location.href = '/Warehouses/Stocktaking'; }, 100);
+                setTimeout(() => { window.location.href = '/Users/Users'; }, 1000);
             },
             error: function (xhr) {
 
@@ -68,6 +70,4 @@
             }
         });
     });
-
-
 });

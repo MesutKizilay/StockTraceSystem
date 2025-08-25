@@ -3,7 +3,7 @@ using Core.Security.Entities;
 
 namespace StockTraceSystem.Application.Services.Repositories
 {
-    public interface IUserRepository : IAsyncRepository<User>
+    public interface IOperationClaimRepository : IAsyncRepository<OperationClaim>
     {
     }
 }

@@ -2,7 +2,7 @@
     toast: true,
     position: 'top-end',
     showConfirmButton: false,
-    timer: 4000,
+    timer: 9999,
     timerProgressBar: true,
     didOpen: (toast) => {
         toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -11,6 +11,7 @@
 });
 
 function parseErrorResponse(xhr) {
+    console.log("xhr", xhr);
     let msgs = [];
 
     try {

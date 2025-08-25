@@ -15,8 +15,10 @@ namespace StockTraceSystem.Application.Feature.Users.Commands.Create
             RuleFor(u => u.Password).NotEmpty().WithMessage("Lütfen şifre alanını doldurunuz.")
                                     .MinimumLength(3).WithMessage("Şifre alanı en az 3 karakter olabilir.");
 
-            RuleFor(u => u.Email).NotEmpty().WithMessage("Lütfen email alanını doldurunuz.");
-                                 //.EmailAddress().WithMessage("Lütfen uygun formatta mail giriniz.");
+            RuleFor(u => u.Email).NotEmpty().WithMessage("Lütfen email alanını doldurunuz.")
+                                 .EmailAddress().WithMessage("Lütfen uygun formatta mail giriniz.");
+
+            RuleFor(u => u.UserOperationClaims).NotEmpty().WithMessage("Lütfen yeni kullanıcı için rol seçiniz.");
         }
     }
 }

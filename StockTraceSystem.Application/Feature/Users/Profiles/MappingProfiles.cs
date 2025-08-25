@@ -12,7 +12,16 @@ namespace StockTraceSystem.Application.Feature.Users.Profiles
         public MappingProfiles()
         {
             CreateMap<Paginate<GetListUserDto>, Paginate<User>>().ReverseMap();
-            CreateMap<GetListUserDto, User>().ReverseMap();
+            CreateMap<User, GetListUserDto>()//.ForMember(destinationMember: u => u.OperationClaim, memberOptions: opt => opt.MapFrom(g => g.UserOperationClaims.Select(uop => uop.OperationClaim).FirstOrDefault()))
+                                             .ReverseMap();
+
+            CreateMap<UserOperationClaim, UserOperationClaimDto>().ReverseMap();
+
+            //    CreateMap<User, GetListUserDto>().ForMember(d => d.OperationClaim,
+            //opt => opt.MapFrom(u =>
+            //    u.UserOperationClaims
+            //     .Select(x => x.OperationClaim)
+            //     .FirstOrDefault()));
 
             CreateMap<UpdateUserCommand, User>().ReverseMap();
 

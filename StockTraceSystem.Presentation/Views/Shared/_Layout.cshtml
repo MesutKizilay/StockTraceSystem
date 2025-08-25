@@ -264,13 +264,13 @@
 				<div class="navbar-nav theme-brand flex-row  text-center">
 					<div class="nav-logo">
 						<div class="nav-item theme-logo">
-							<a href="/Warehouse/Stocktaking">
+							<a href="/Warehouses/Stocktaking">
 								@* <img src="../src/assets/img/logo.svg" class="navbar-logo" alt="logo"> *@
 								<img src="~/img/teknosin2.png" alt="logo" style="width:24px;height:40px">
 							</a>
 						</div>
 						<div class="nav-item theme-text">
-							<a href="/Warehouse/Stocktaking" class="nav-link"> TEKNOSİN </a>
+							<a href="/Warehouses/Stocktaking" class="nav-link"> TEKNOSİN </a>
 						</div>
 					</div>
 					<div class="nav-item sidebar-toggle">
@@ -438,15 +438,7 @@
 
 	<script src="~/js/common.js"></script>
 
-	@* <script>
-		$(document).ajaxError(function (event, jqxhr, settings, thrownError) {
 
-			if (jqxhr.status === 401) {
-				console.log("aaaaawww");
-				window.location.href = '/Auth/Login';
-			}
-		});
-	</script> *@
 
 
 	@* 	<script>
@@ -474,6 +466,51 @@
 	</script> *@
 
 
+	<script>
+		//      $(document).ajaxError(function (event, jqxhr, settings, thrownError) {
+				 // console.log("C123");
+		//          if (jqxhr.status === 401) {
+
+		//              window.location.href = '/Auth/Index';
+		//          }
+		//      });
+
+
+
+			 // $(document).on( "ajaxError", function( event, request, settings ) {
+			 // 	console.log("C123");
+			 //   //$( "#msg" ).append( "<li>Error requesting page " + settings.url + "</li>" );
+			 // } );
+
+		// $(document).on("ajaxError", function (event,jqxhr, request, settings) {
+		//  console.log("C123");
+		//  if (jqxhr.status === 401) {
+
+		// 	  window.location.href = '/Auth/Index';
+		//   }
+		 //$("#msg").append("<li>Error requesting page " + settings.url + "</li>");
+		//});
+
+
+		// Layout’a ekleyin
+		$.ajaxSetup({
+		  statusCode: {
+		    401: function () {
+		      window.location.href = '/Auth/Login?returnUrl1=' + encodeURIComponent(location.pathname + location.search);
+		    },
+		    403: function () {
+		      Swal.fire({ icon: 'error', title: 'Yetkisiz', text: 'Bu işlemi yapamazsınız.' });
+		    }
+		  }
+		});
+		
+		// (Opsiyonel) jQuery eski sürümse:
+		// $(document).ajaxError(function (evt, jqxhr) {
+		//   if (jqxhr.status === 401) {
+		//     window.location.href = '/Auth/Login?returnUrl=' + 'Ajax';
+		//   }
+		// });
+	</script>
 
 
 

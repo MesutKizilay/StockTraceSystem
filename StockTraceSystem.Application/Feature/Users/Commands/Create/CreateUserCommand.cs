@@ -12,6 +12,7 @@ namespace StockTraceSystem.Application.Feature.Users.Commands.Create
         public string Email { get; set; }
         public string Password { get; set; }
         public bool Status { get; set; }
+        public virtual ICollection<UserOperationClaim> UserOperationClaims { get; set; }
 
         public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand>
         {

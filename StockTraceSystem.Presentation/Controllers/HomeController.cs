@@ -1,9 +1,12 @@
 using System.Diagnostics;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using StockTraceSystem.Presentation.Models;
 
+
 namespace StockTraceSystem.Presentation.Controllers
 {
+    //[AllowAnonymous]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

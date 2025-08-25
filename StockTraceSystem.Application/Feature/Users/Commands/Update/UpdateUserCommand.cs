@@ -2,11 +2,6 @@
 using Core.Security.Entities;
 using MediatR;
 using StockTraceSystem.Application.Services.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace StockTraceSystem.Application.Feature.Users.Commands.Update
 {
@@ -18,6 +13,7 @@ namespace StockTraceSystem.Application.Feature.Users.Commands.Update
         public string Email { get; set; }
         public string Password { get; set; }
         public bool Status { get; set; }
+        public ICollection<UserOperationClaim> UserOperationClaims { get; set; }
 
         public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand>
         {

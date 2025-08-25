@@ -21,6 +21,8 @@
 
             <div class="modal-body">
                 <input type="hidden" name="id" id="edit-id" />
+                <input type="hidden" id="edit-uoc-id" />
+
 
                 <div class="mb-3">
                     <label for="edit-firstName" class="form-label">Ad</label>
@@ -35,6 +37,12 @@
                 <div class="mb-3">
                     <label for="edit-email" class="form-label">E‑posta</label>
                     <input type="text" class="form-control" id="edit-email" name="email">
+                </div>
+
+                <div class="mb-3">
+                    <label for="edit-claim" class="form-label">Rol</label>
+                    <select id="edit-claim" name="operationClaimIds" class="form-select">
+                    </select>
                 </div>
 
                 <div class="mb-3">
@@ -85,6 +93,12 @@
                 <div class="mb-3">
                     <label for="add-email" class="form-label">E‑posta</label>
                     <input type="text" class="form-control" id="add-email" name="email">
+                </div>
+
+                <div class="mb-3">
+                    <label for="add-claim" class="form-label">Rol</label>
+                    <select id="add-claim" name="operationClaimIds" class="form-select">
+                    </select>
                 </div>
 
                 <div class="mb-3">

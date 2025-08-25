@@ -2,11 +2,6 @@
 using Core.CrossCuttingConcerns.Exceptions.HttpProblemDetails;
 using Core.CrossCuttingConcerns.Exceptions.Types;
 using Microsoft.AspNetCore.Http;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Core.CrossCuttingConcerns.Exceptions.Handlers
 {
@@ -20,11 +15,11 @@ namespace Core.CrossCuttingConcerns.Exceptions.Handlers
             set => _response = value;
         }
 
-        protected override Task HandleException(BusinessException businessException)
+        protected override async Task HandleException(BusinessException businessException)
         {
             Response.StatusCode = StatusCodes.Status400BadRequest;
             string details = new BusinessProblemDetails(businessException.Message).AsJson();
-            return Response.WriteAsync(details);
+            await Response.WriteAsync(details);
         }
 
         protected override Task HandleException(Exception exception)

@@ -17,6 +17,7 @@ namespace StockTraceSystem.Persistence
 
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IUserOperationClaimRepository, UserOperationClaimRepository>();
+            services.AddTransient<IOperationClaimRepository, OperationClaimRepository>();
 
             return services;
         }

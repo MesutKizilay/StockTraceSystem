@@ -9,6 +9,7 @@ using System.Security.Claims;
 
 namespace StockTraceSystem.Presentation.Controllers
 {
+    //[Authorize(Roles = "Supervisor")]
     public class UsersController : BaseController
     {
         public IActionResult Users()

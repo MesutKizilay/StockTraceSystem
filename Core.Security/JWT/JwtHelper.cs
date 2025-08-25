@@ -3,14 +3,8 @@ using Core.Security.Entities;
 using Core.Security.Extensions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Security.Claims;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Core.Security.JWT
 {
@@ -43,7 +37,7 @@ namespace Core.Security.JWT
 
         public AccessToken CreateToken(User user, IList<OperationClaim> operationClaims)
         {
-            _accessTokenExpiration = DateTime.Now.AddMinutes(_tokenOptions.AccessTokenExpiration);
+            _accessTokenExpiration = DateTime.Now.AddSeconds(_tokenOptions.AccessTokenExpiration);
             SecurityKey securityKey = SecurityKeyHelper.CreateSecurityKey(_tokenOptions.SecurityKey);
             SigningCredentials signingCredentials = SigningCredentialsHelper.CreateSigningCredentials(securityKey);
             JwtSecurityToken jwt = CreateJwtSecurityToken(_tokenOptions, user, signingCredentials, operationClaims);

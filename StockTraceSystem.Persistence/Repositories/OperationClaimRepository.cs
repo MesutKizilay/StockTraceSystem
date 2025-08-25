@@ -5,9 +5,9 @@ using StockTraceSystem.Persistence.Contexts;
 
 namespace StockTraceSystem.Persistence.Repositories
 {
-    public class UserRepository : EfRepositoryBase<User, StockTraceSystemContext>, IUserRepository
+    public class OperationClaimRepository : EfRepositoryBase<OperationClaim, StockTraceSystemContext>, IOperationClaimRepository
     {
-        public UserRepository(StockTraceSystemContext context) : base(context)
+        public OperationClaimRepository(StockTraceSystemContext context) : base(context)
         {
             
         }
