@@ -1,11 +1,12 @@
 ﻿using AutoMapper;
+using Core.Application.Pipelines.Authorization;
 using Core.Security.Entities;
 using MediatR;
 using StockTraceSystem.Application.Services.Repositories;
 
 namespace StockTraceSystem.Application.Feature.Users.Commands.Create
 {
-    public class CreateUserCommand : IRequest
+    public class CreateUserCommand : IRequest//, ISecuredRequest
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -13,6 +14,8 @@ namespace StockTraceSystem.Application.Feature.Users.Commands.Create
         public string Password { get; set; }
         public bool Status { get; set; }
         public virtual ICollection<UserOperationClaim> UserOperationClaims { get; set; }
+
+        public string[] Roles => new string[] { "Supervisor","Admin" };
 
         public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand>
         {

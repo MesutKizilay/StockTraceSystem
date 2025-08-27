@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Core.CrossCuttingConcerns.Exceptions.HttpProblemDetails
 {
-    public class InternalServerErrorProblemDetails:ProblemDetails
+    public class InternalServerErrorProblemDetails : ProblemDetails
     {
         public InternalServerErrorProblemDetails(string detail)
         {

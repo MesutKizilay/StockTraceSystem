@@ -1,9 +1,4 @@
 ﻿using Core.CrossCuttingConcerns.Exceptions.Types;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Core.CrossCuttingConcerns.Exceptions.Handlers
 {
@@ -14,11 +9,13 @@ namespace Core.CrossCuttingConcerns.Exceptions.Handlers
             {
                 BusinessException businessException => HandleException(businessException),
                 ValidationException validationException => HandleException(validationException),
+                AuthorizationException authorizationException => HandleException(authorizationException),
                 _ => HandleException(exception)
             };
 
         protected abstract Task HandleException(BusinessException businessException);
         protected abstract Task HandleException(ValidationException validationException);
+        protected abstract Task HandleException(AuthorizationException authorizationException);
         protected abstract Task HandleException(Exception exception);
     }
 }

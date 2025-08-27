@@ -18,7 +18,7 @@ namespace StockTraceSystem.Application.Feature.Users.Commands.Update
             RuleFor(u => u.Email).NotEmpty().WithMessage("Lütfen email alanını doldurunuz.")
                                  .EmailAddress().WithMessage("Lütfen uygun formatta mail giriniz.");
 
-            RuleFor(u => u.UserOperationClaims).NotEmpty().WithMessage("Lütfen yeni kullanıcı için rol seçiniz.");
+            RuleFor(u => u.UserOperationClaims).NotEmpty().WithMessage("Lütfen kullanıcı için rol seçiniz.");
 
         }
     }

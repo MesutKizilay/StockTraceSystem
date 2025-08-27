@@ -2,11 +2,12 @@
 using Core.Security.Extension;
 using MediatR;
 using Microsoft.AspNetCore.Http;
+using System.Collections.Immutable;
 
 namespace Core.Application.Pipelines.Authorization
 {
     public class AuthorizationBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
-    where TRequest : IRequest<TResponse>, ISecuredRequest
+    where TRequest : IBaseRequest, ISecuredRequest
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
 
@@ -26,7 +27,7 @@ namespace Core.Application.Pipelines.Authorization
                 bool isNotMatchedAUserRoleClaimWithRequestRoles = userRoleClaims.FirstOrDefault(userRoleClaim => request.Roles.Contains(userRoleClaim)) == null;
                 
                 if (isNotMatchedAUserRoleClaimWithRequestRoles)
-                    throw new AuthorizationException("You are not authorized.");
+                    throw new AuthorizationException("Bu işlemi yapmak için yetkili değilsiniz.");
             }
 
             TResponse response = await next();

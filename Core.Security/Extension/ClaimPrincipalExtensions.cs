@@ -12,7 +12,7 @@ namespace Core.Security.Extension
 
         public static ICollection<string>? GetClaims(this ClaimsPrincipal claimsPrincipal, string claimType)
         {
-            return claimsPrincipal?.FindAll(claimType)?.Select(c => c.Value).ToImmutableList();
+            return claimsPrincipal?.FindAll(claimType)?.Select(c => c.Value).ToImmutableArray();
         }
     }
 }

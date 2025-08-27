@@ -495,15 +495,16 @@
 		// Layout’a ekleyin
 		$.ajaxSetup({
 		  statusCode: {
-		    401: function () {
-		      window.location.href = '/Auth/Login?returnUrl1=' + encodeURIComponent(location.pathname + location.search);
-		    },
-		    403: function () {
-		      Swal.fire({ icon: 'error', title: 'Yetkisiz', text: 'Bu işlemi yapamazsınız.' });
-		    }
+			401: function (xhr) {
+			  //window.location.href = '/Auth/Login?returnUrl1=' + encodeURIComponent(location.pathname + location.search);
+				window.location.href = '/Auth/Login?returnUrl=' + 'layout';
+			},
+			403: function (xhr) {
+				parseErrorResponse(xhr);
+			}
 		  }
 		});
-		
+
 		// (Opsiyonel) jQuery eski sürümse:
 		// $(document).ajaxError(function (evt, jqxhr) {
 		//   if (jqxhr.status === 401) {

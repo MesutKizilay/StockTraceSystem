@@ -15,11 +15,11 @@ namespace Core.CrossCuttingConcerns.Exceptions.Handlers
             set => _response = value;
         }
 
-        protected override async Task HandleException(BusinessException businessException)
+        protected override Task HandleException(BusinessException businessException)
         {
             Response.StatusCode = StatusCodes.Status400BadRequest;
             string details = new BusinessProblemDetails(businessException.Message).AsJson();
-            await Response.WriteAsync(details);
+            return Response.WriteAsync(details);
         }
 
         protected override Task HandleException(Exception exception)
@@ -33,6 +33,14 @@ namespace Core.CrossCuttingConcerns.Exceptions.Handlers
         {
             Response.StatusCode = StatusCodes.Status400BadRequest;
             string details = new ValidationProblemDetails(validationException.Errors88).AsJson();
+            return Response.WriteAsync(details);
+        }
+
+        protected override Task HandleException(AuthorizationException authorizationException)
+        {
+            //Response.StatusCode = StatusCodes.Status401Unauthorized;
+            Response.StatusCode = StatusCodes.Status403Forbidden;
+            string details = new AuthorizationProblemDetails(authorizationException.Message).AsJson();
             return Response.WriteAsync(details);
         }
     }

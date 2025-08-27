@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 using StockTraceSystem.Presentation.Models;
 
 
@@ -30,6 +31,16 @@ namespace StockTraceSystem.Presentation.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public IActionResult AccessDenied()
+        {
+            return View();
+        }
+
+        public IActionResult NotFound404()
+        {
+            return View();
         }
     }
 }

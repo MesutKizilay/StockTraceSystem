@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using StockTraceSystem.Application.Services.AuthServices;
 using System.Reflection;
 using FluentValidation;
+using Core.Application.Pipelines.Authorization;
 
 namespace StockTraceSystem.Application
 {
@@ -21,10 +22,12 @@ namespace StockTraceSystem.Application
 
                 configuration.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
                 configuration.AddOpenBehavior(typeof(RequestValidationBehavior<,>));
+                configuration.AddOpenBehavior(typeof(AuthorizationBehavior<,>));
             });
 
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+            services.AddHttpContextAccessor();
 
             return services;
         }

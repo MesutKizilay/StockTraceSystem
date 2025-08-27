@@ -120,7 +120,7 @@ namespace StockTraceSystem.Presentation
                                 //config.ExpireTimeSpan = TimeSpan.FromSeconds(10);
                                 //config.SlidingExpiration = true;
                                 config.LoginPath = "/Auth/Login";
-                                config.AccessDeniedPath = "/Auth/abc";
+                                config.AccessDeniedPath = "/Home/AccessDenied";
                             });
 
             //static bool IsAjax(HttpRequest r) =>
@@ -151,7 +151,7 @@ namespace StockTraceSystem.Presentation
             app.UseAuthentication();
             app.UseAuthorization();
 
-
+            app.UseStatusCodePagesWithReExecute("/Home/NotFound404");
             //app.UseStatusCodePages(async context =>
             //{
             //    var res = context.HttpContext.Response;
@@ -197,7 +197,7 @@ namespace StockTraceSystem.Presentation
             app.MapStaticAssets();
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Users}/{action=Users}/{id?}")
+                pattern: "{controller=Warehouses}/{action=Stocktaking}/{id?}")
                 //pattern: "{controller=Auth}/{action=Login}/{id?}")
                 .WithStaticAssets();
 

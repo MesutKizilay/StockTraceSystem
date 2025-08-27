@@ -46,7 +46,7 @@
                     callback({
                         draw: dtReq.draw,
                         recordsTotal: res.noOfItem,
-                        recordsFiltered: 4,//res.noOfItem,
+                        recordsFiltered: res.noOfItem,
                         //recordsFiltered: res.noOfItemInAPage,
                         data: items
                     });
@@ -134,6 +134,7 @@
 
         initComplete: function () {
             if (claim !== "Supervisor") {
+            //if (claim === "Depocu") {
                 dt.column(4).visible(false);
                 dt.column(5).visible(false);
                 dt.column(7).visible(false);

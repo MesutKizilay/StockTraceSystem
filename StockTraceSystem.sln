@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Security", "Core.Secur
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.CrossCuttingConcerns", "Core.CrossCuttingConcerns\Core.CrossCuttingConcerns.csproj", "{75F671EA-83D1-4980-8DE5-BE00B261F42E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockTraceSystem.App", "StockTraceSystem.App\StockTraceSystem.App.csproj", "{F693CEED-D847-45F2-9C59-C8C79F4DF430}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -65,6 +67,11 @@ Global
 		{75F671EA-83D1-4980-8DE5-BE00B261F42E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{75F671EA-83D1-4980-8DE5-BE00B261F42E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{75F671EA-83D1-4980-8DE5-BE00B261F42E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F693CEED-D847-45F2-9C59-C8C79F4DF430}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F693CEED-D847-45F2-9C59-C8C79F4DF430}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F693CEED-D847-45F2-9C59-C8C79F4DF430}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{F693CEED-D847-45F2-9C59-C8C79F4DF430}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F693CEED-D847-45F2-9C59-C8C79F4DF430}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
